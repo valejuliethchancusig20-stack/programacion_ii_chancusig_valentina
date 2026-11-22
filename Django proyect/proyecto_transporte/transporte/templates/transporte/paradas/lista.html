@@ -1,0 +1,32 @@
+{% extends "transporte/base.html" %}
+{% block title %}Paradas - Transporte Público{% endblock %}
+{% block content %}
+<h1>Listado de Paradas</h1>
+<p><a href="{% url 'parada_crear' %}">Nueva Parada</a></p>
+
+{% if paradas %}
+<table border="1" cellpadding="6" cellspacing="0">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Ubicación / Dirección</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for parada in paradas %}
+        <tr>
+            <td>{{ parada }}</td>
+            <td>{{ parada.direccion|default:parada.ubicacion|default:"-" }}</td>
+            <td>
+                <a href="{% url 'parada_editar' parada.id %}">Editar</a> |
+                <a href="{% url 'parada_eliminar' parada.id %}">Eliminar</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p>No hay paradas registradas.</p>
+{% endif %}
+{% endblock %}

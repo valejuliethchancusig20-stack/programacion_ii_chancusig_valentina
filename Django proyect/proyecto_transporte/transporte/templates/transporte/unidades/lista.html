@@ -1,0 +1,34 @@
+{% extends "transporte/base.html" %}
+{% block title %}Unidades - Transporte Público{% endblock %}
+{% block content %}
+<h1>Listado de Unidades</h1>
+<p><a href="{% url 'unidad_crear' %}">Nueva Unidad</a></p>
+
+{% if unidades %}
+<table border="1" cellpadding="6" cellspacing="0">
+    <thead>
+        <tr>
+            <th>Placa / Unidad</th>
+            <th>Capacidad</th>
+            <th>Ruta / Conductor</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for unidad in unidades %}
+        <tr>
+            <td>{{ unidad }}</td>
+            <td>{{ unidad.capacidad|default:"-" }}</td>
+            <td>{{ unidad.ruta|default:"Sin asignar" }}</td>
+            <td>
+                <a href="{% url 'unidad_editar' unidad.id %}">Editar</a> |
+                <a href="{% url 'unidad_eliminar' unidad.id %}">Eliminar</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p>No hay unidades registradas.</p>
+{% endif %}
+{% endblock %}

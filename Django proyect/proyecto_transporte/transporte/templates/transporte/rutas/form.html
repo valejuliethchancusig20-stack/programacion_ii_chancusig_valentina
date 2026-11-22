@@ -1,0 +1,12 @@
+{% extends "transporte/base.html" %}
+{% block title %}Formulario de Ruta - Transporte Público{% endblock %}
+{% block content %}
+<h1>{% if form.instance.pk %}Editar Ruta{% else %}Nueva Ruta{% endif %}</h1>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Guardar</button>
+    <a href="{% url 'ruta_lista' %}">Cancelar</a>
+</form>
+{% endblock %}

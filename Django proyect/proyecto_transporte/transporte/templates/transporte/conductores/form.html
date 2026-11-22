@@ -1,0 +1,11 @@
+{% extends "transporte/base.html" %}
+{% block title %}{{ titulo|default:"Nuevo Conductor" }}{% endblock %}
+{% block content %}
+<h1>{{ titulo|default:"Nuevo Conductor" }}</h1>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Guardar</button>
+</form>
+<p><a href="{% url 'conductor_lista' %}">Volver a conductores</a></p>
+{% endblock %}

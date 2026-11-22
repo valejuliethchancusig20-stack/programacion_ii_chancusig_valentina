@@ -1,0 +1,11 @@
+{% extends "transporte/base.html" %}
+{% block title %}Inicio - Transporte Público{% endblock %}
+{% block content %}
+<h1>Gestión de Transporte Público</h1>
+<ul>
+    <li>Rutas: {{ total_rutas|default:0 }}</li>
+    <li>Paradas: {{ total_paradas|default:0 }}</li>
+    <li>Conductores: {{ total_conductores|default:0 }}</li>
+    <li>Unidades: {{ total_unidades|default:0 }}</li>
+</ul>
+{% endblock %}

@@ -1,0 +1,34 @@
+{% extends "transporte/base.html" %}
+{% block title %}Rutas - Transporte Público{% endblock %}
+{% block content %}
+<h1>Listado de Rutas</h1>
+<p><a href="{% url 'ruta_crear' %}">Nueva Ruta</a></p>
+
+{% if rutas %}
+<table border="1" cellpadding="6" cellspacing="0">
+    <thead>
+        <tr>
+            <th>Código / Nombre</th>
+            <th>Origen</th>
+            <th>Destino</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for ruta in rutas %}
+        <tr>
+            <td>{{ ruta }}</td>
+            <td>{{ ruta.origen|default:"-" }}</td>
+            <td>{{ ruta.destino|default:"-" }}</td>
+            <td>
+                <a href="{% url 'ruta_editar' ruta.id %}">Editar</a> |
+                <a href="{% url 'ruta_eliminar' ruta.id %}">Eliminar</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p>No hay rutas registradas.</p>
+{% endif %}
+{% endblock %}

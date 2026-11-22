@@ -1,0 +1,30 @@
+{% extends "transporte/base.html" %}
+{% block title %}Conductores{% endblock %}
+{% block content %}
+<h1>Conductores</h1>
+<p><a href="{% url 'conductor_crear' %}">+ Nuevo Conductor</a></p>
+<table border="1" cellpadding="6">
+    <tr>
+        <th>Cédula</th>
+        <th>Nombres</th>
+        <th>Apellidos</th>
+        <th>Licencia</th>
+        <th>Teléfono</th>
+        <th>Activo</th>
+    </tr>
+    {% for c in conductores %}
+    <tr>
+        <td>{{ c.cedula }}</td>
+        <td>{{ c.nombres }}</td>
+        <td>{{ c.apellidos }}</td>
+        <td>{{ c.licencia }}</td>
+        <td>{{ c.telefono }}</td>
+        <td>{{ c.activo|yesno:"Sí,No" }}</td>
+    </tr>
+    {% empty %}
+    <tr>
+        <td colspan="6">No hay conductores registrados.</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}
